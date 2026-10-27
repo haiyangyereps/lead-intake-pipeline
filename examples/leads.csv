@@ -1,0 +1,5 @@
+name,email
+Alice Example,alice@example.com
+Alice Duplicate,ALICE@example.com
+Invalid Example,missing-email
+Bob Example,bob@example.com
