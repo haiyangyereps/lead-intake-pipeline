@@ -1,0 +1,32 @@
+{
+  "id": "200b5011-1c27-42ed-9bcc-636e1631dc17",
+  "mode": "scripted_fixture",
+  "prompt": "Review open leads and propose the most useful follow-up. Do not contact anyone.",
+  "status": "completed",
+  "output": "SCRIPTED FIXTURE: Lead 1 has a pending follow-up suggestion. No customer message was sent.",
+  "events": [
+    {
+      "id": 1,
+      "run_id": "200b5011-1c27-42ed-9bcc-636e1631dc17",
+      "name": "list_open_leads",
+      "args": "{}",
+      "result": "[{\"id\": 1, \"lead_id\": 1, \"source\": \"website\", \"owner\": \"unassigned\", \"stage\": \"new\", \"value_cents\": 240000, \"consent\": 1, \"urgency\": 1, \"created\": 1792977327.9451141, \"due\": 1793063727.9451141, \"version\": 1, \"score\": 80, \"overdue\": true, \"value\": \"2400.00\"}, {\"id\": 2, \"lead_id\": 2, \"source\": \"referral\", \"owner\": \"demo-sales\", \"stage\": \"new\", \"value_cents\": 80000, \"consent\": 1, \"urgency\": 0, \"created\": 1792977327.945809, \"due\": 1793063727.945809, \"version\": 1, \"score\": 50, \"overdue\": true, \"value\": \"800.00\"}, {\"id\": 3, \"lead_id\": 3, \"source\": \"website\", \"owner\": \"unassigned\", \"stage\": \"new\", \"value_cents\": 10000, \"consent\": 0, \"urgency\": 0, \"created\": 1792977327.946356, \"due\": 1793063727.946356, \"version\": 1, \"score\": 10, \"overdue\": true, \"value\": \"100.00\"}]"
+    },
+    {
+      "id": 2,
+      "run_id": "200b5011-1c27-42ed-9bcc-636e1631dc17",
+      "name": "propose_follow_up",
+      "args": "{\"lead_id\": 1, \"recommendation\": \"Assign an owner and review the overdue enquiry before preparing a response.\"}",
+      "result": "{\"proposal_id\": \"42b3c009-b385-5888-84f2-e75e2e559ece\", \"status\": \"pending_human_approval\", \"action\": {\"kind\": \"follow_up_task\", \"lead_id\": 1, \"source_version\": 1, \"recommendation\": \"Assign an owner and review the overdue enquiry before preparing a response.\"}}"
+    }
+  ],
+  "proposals": [
+    {
+      "id": "42b3c009-b385-5888-84f2-e75e2e559ece",
+      "run_id": "200b5011-1c27-42ed-9bcc-636e1631dc17",
+      "payload": "{\"kind\": \"follow_up_task\", \"lead_id\": 1, \"source_version\": 1, \"recommendation\": \"Assign an owner and review the overdue enquiry before preparing a response.\"}",
+      "state": "pending",
+      "reviewer": null
+    }
+  ]
+}

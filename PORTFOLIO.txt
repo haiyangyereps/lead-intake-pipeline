@@ -1,0 +1,9 @@
+Lead Operations Agent | AI Follow-Up & Workflow Automation
+
+Python Developer | AI Agents & Workflow Automation
+
+Built a tool-calling lead operations agent that reads current pipeline data, reviews priorities, and creates follow-up suggestions for human approval. It runs on a Python/SQLite workbench with duplicate prevention, stage tracking, and activity history. A live model test selected an overdue, unassigned lead and queued a reviewable task. Execution traces record tool calls and proposed actions. Fictional data; local tools only, with no external CRM writes or customer messages.
+
+Skills: AI Agent Development, AI Automation, Business Process Automation, Python, CRM Automation
+
+Image caption: Live model run: read lead data, identify an overdue enquiry, and queue a follow-up suggestion. Fictional data; no outreach sent.

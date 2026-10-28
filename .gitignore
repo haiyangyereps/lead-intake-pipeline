@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.db
+.env
+output/
+
+.env
+.env.*
+!.env.example
+*.db
+agent-result.json
+__pycache__/

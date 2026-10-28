@@ -1,58 +1,9 @@
-# Local verification
+# Version 0.4 verification
 
-Fictional sample data; commands executed successfully. Temporary database paths shown below are ephemeral.
+- 27 automated tests passed (`python3 -m unittest discover -s tests -v`).
+- Live inference tested through an operator-configured OpenAI-compatible service.
+- `live-result.json`: original model output, actual tool calls, and local pending proposals.
+- `agent-live.png`: screenshot of the run viewer generated from that record.
+- `fixture-result.json`: explicitly scripted offline fixture, separate from live evidence.
 
-```text
-python3 pipeline.py --db /var/folders/zg/sd0lgkgn0q71mm5sgl66mkkc0000gn/T/tmpy88ixv7h/leads.db import examples/leads.csv
-[
-  {
-    "row": 2,
-    "status": "accepted",
-    "lead_id": 1
-  },
-  {
-    "row": 3,
-    "status": "duplicate",
-    "lead_id": 1
-  },
-  {
-    "row": 4,
-    "status": "rejected",
-    "reason": "invalid email format"
-  },
-  {
-    "row": 5,
-    "status": "accepted",
-    "lead_id": 2
-  }
-]
-```
-
-```text
-python3 pipeline.py --db /var/folders/zg/sd0lgkgn0q71mm5sgl66mkkc0000gn/T/tmpy88ixv7h/leads.db drain --crm /var/folders/zg/sd0lgkgn0q71mm5sgl66mkkc0000gn/T/tmpy88ixv7h/crm.db
-[
-  {
-    "id": 1,
-    "status": "delivered"
-  },
-  {
-    "id": 2,
-    "status": "delivered"
-  }
-]
-```
-
-```text
-python3 pipeline.py --db /var/folders/zg/sd0lgkgn0q71mm5sgl66mkkc0000gn/T/tmpy88ixv7h/leads.db status
-{
-  "leads": 2,
-  "events": 4,
-  "rejections": 1,
-  "outbox": [
-    {
-      "state": "delivered",
-      "count": 2
-    }
-  ]
-}
-```
+No customer records, production integrations, or measured customer ROI are claimed. Approval records a local decision; external execution is not implemented.

@@ -1,3 +1,43 @@
+# Lead Operations Agent
+
+**Turn enquiries into owned follow-ups with AI recommendations grounded in pipeline data.**
+
+![Live agent run with fictional data](agent-live.png)
+
+**Python · Workflow automation · Tool-calling AI · Human review**
+
+## Version 0.4 — Tool-calling AI workflow
+
+This project now includes `agent.py`: an OpenAI-compatible Chat Completions client, a bounded multi-turn tool loop, domain tools backed by the existing application, a SQLite execution journal, and human review of proposed actions. The model chooses tools and receives their actual results. No arbitrary code execution or model-controlled network destinations are exposed.
+
+## Run
+
+Use Python 3.10+ from this repository directory. Configure `AI_BASE_URL`, `AI_MODEL`, and `AI_API_KEY` in your shell (see `.env.example`; use `--config /path/to/.env.local` to load a file without shell execution). Use a provider/model that supports Chat Completions function calling. Do not commit credentials.
+
+```sh
+python3 agent.py --config /path/to/.env.local --prompt "Review the available records and propose the next action" --output live-result.json
+# Offline integration evidence, explicitly NOT a live model run:
+python3 agent.py --fixture --output fixture-result.json
+python3 agent.py --review PROPOSAL_ID --reviewer local-operator --decision approved
+python3 -m unittest discover -s tests -v
+```
+
+The approval command records a local review decision only; it does not send messages or execute changes in external systems. Reviewer labels are not authenticated identities. This is a local portfolio prototype, not a deployed multi-user product. Each run is a separate analysis; duplicate actions within one run are deduplicated, but cross-run deduplication is not provided.
+
+## Evidence and limitations
+
+`fixture-result.json` contains real local tool executions with a **scripted model substitute**. It verifies orchestration and approval boundaries; it is not proof of model quality. Live inference was verified with a user-configured compatible service; see `live-result.json` and `agent-live.png`. Reproducing it requires your own credentials. Outputs from a model require review: schema validation and evidence references do not guarantee factual correctness. English urgent-keyword routing disables support drafts for listed terms, but is not a comprehensive emergency detector. The support demo is fixed to one demo property; do not use it for arbitrary customer properties.
+
+Provider calls have a 60-second timeout, 6-turn/12-tool-call budget, and 1,800 output-token cap per call. Provider errors fail the run; there is no silent fallback to fixture mode. Local journals contain prompts and results—use fictional data for public evidence, do not publish customer data. No external delivery or production integration is claimed.
+
+## Verified live evidence
+
+![Actual live model/tool execution](agent-live.png)
+
+[Open the run viewer](agent-live.html). The viewer formats actual JSON execution records; it is not a production staff dashboard. The configured model identifier is supplied by the provider, not independently attested. Human review is a local decision record, not an external action executor.
+
+## Original workflow (v0.3; its no-LLM limitation applies to the legacy interface only)
+
 # Lead Operations — Enquiry to Follow-up
 
 **Business question:** Which enquiries need attention now, who owns them, and what happened next?
@@ -91,3 +131,8 @@ The CRM is a second local database, **not Salesforce/HubSpot integration**. A re
 ## Evidence
 
 Tests cover replay/conflict handling, normalized duplicates, persistent rejection logging, retry timing/dead letters, and recovery after a CRM write. See [tests](tests/test_pipeline.py). All examples use fictional data; no client outcomes are claimed.
+
+
+### Transport configuration
+
+HTTPS is required by default. For a self-hosted HTTP service, the operator can explicitly allow a single origin using `AI_ALLOW_HTTP_ORIGIN=http://host:port` in the local configuration file. Redirects are refused. Never upload that file or include provider credentials in screenshots.

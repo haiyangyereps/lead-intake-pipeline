@@ -1,0 +1,60 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Lead Operations Agent · Live execution</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f0f4f7;color:#162d41;font:15px/1.55 system-ui}main{max-width:1240px;margin:auto;padding:32px}header{background:#12354a;color:#fff;border-radius:18px;padding:28px 32px}header small{color:#7be3c6;letter-spacing:1.5px}h1{font-size:34px;line-height:1.2;margin:10px 0}h2{font-size:19px;margin:0 0 14px}header p{margin:8px 0}.status{display:flex;gap:12px;margin:18px 0;flex-wrap:wrap}.tag{display:inline-block;background:#d9f1e8;color:#155c45;font-size:11px;font-weight:750;border-radius:6px;padding:6px 10px}.note{color:#536b7b;font-size:13px}section{background:#fff;border:1px solid #d8e2e8;border-radius:14px;padding:22px;margin:16px 0}.grid{display:grid;grid-template-columns:1fr 1.05fr;gap:18px;align-items:start}.tool{display:flex;gap:12px;border-bottom:1px solid #e4edf1;padding:15px 0}.tool:last-child{border:0}.num{background:#e6f2f5;border-radius:50%;min-width:28px;height:28px;text-align:center;line-height:28px}small{display:block;color:#637a8b;font-size:12px}pre{font:12px/1.5 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere}summary{font-size:12px;cursor:pointer;color:#19725e}.task{border-left:3px solid #c79620;padding:12px 16px;background:#fff9e9;margin-top:12px}.task .tag{background:#ffe9ad;color:#755514}.answer{font-size:14px}footer{font-size:12px;color:#627888;margin:20px 0}</style></head><body><main><header><small>AI AUTOMATION / TOOL-CALLING AGENT / WORKFLOW</small><h1>Lead Operations Agent</h1><p>From an overdue enquiry to a reviewable follow-up task</p></header><div class="status"><span class="tag">LIVE MODEL RUN · COMPLETED</span><span class="tag">2 TOOL CALLS</span><span class="tag">27 TESTS PASSED</span></div><p class="note">Real inference through a configured OpenAI-compatible endpoint. Fictional business data. Tool execution and approval storage are local; no external delivery.</p><section><h2>Task input</h2>Review open leads and propose the most useful follow-up. Do not contact anyone.</section><div class="grid"><section><h2>Agent execution trace</h2><div class="tool"><span class="num">1</span><div><strong>list_open_leads</strong><small>Executed locally · actual model-selected tool</small><pre>{}</pre><details><summary>Inspect actual result</summary><pre>[
+  {
+    &quot;id&quot;: 1,
+    &quot;lead_id&quot;: 1,
+    &quot;source&quot;: &quot;website&quot;,
+    &quot;owner&quot;: &quot;unassigned&quot;,
+    &quot;stage&quot;: &quot;new&quot;,
+    &quot;value_cents&quot;: 240000,
+    &quot;consent&quot;: 1,
+    &quot;urgency&quot;: 1,
+    &quot;created&quot;: 1792977327.9451141,
+    &quot;due&quot;: 1793063727.9451141,
+    &quot;version&quot;: 1,
+    &quot;score&quot;: 80,
+    &quot;overdue&quot;: true,
+    &quot;value&quot;: &quot;2400.00&quot;
+  },
+  {
+    &quot;id&quot;: 2,
+    &quot;lead_id&quot;: 2,
+    &quot;source&quot;: &quot;referral&quot;,
+    &quot;owner&quot;: &quot;demo-sales&quot;,
+    &quot;stage&quot;: &quot;new&quot;,
+    &quot;value_cents&quot;: 80000,
+    &quot;consent&quot;: 1,
+    &quot;urgency&quot;: 0,
+    &quot;created&quot;: 1792977327.945809,
+    &quot;due&quot;: 1793063727.945809,
+    &quot;version&quot;: 1,
+    &quot;score&quot;: 50,
+    &quot;overdue&quot;: true,
+    &quot;value&quot;: &quot;800.00&quot;
+  },
+  {
+    &quot;id&quot;: 3,
+    &quot;lead_id&quot;: 3,
+    &quot;source&quot;: &quot;website&quot;,
+    &quot;owner&quot;: &quot;unassigned&quot;,
+    &quot;stage&quot;: &quot;new&quot;,
+    &quot;value_cents&quot;: 10000,
+    &quot;consent&quot;: 0,
+    &quot;urgency&quot;: 0,
+    &quot;created&quot;: 1792977327.946356,
+    &quot;due&quot;: 1793063727.946356,
+    &quot;version&quot;: 1,
+    &quot;score&quot;: 10,
+    &quot;overdue&quot;: true,
+    &quot;value&quot;: &quot;100.00&quot;
+  }
+]</pre></details></div></div><div class="tool"><span class="num">2</span><div><strong>propose_follow_up</strong><small>Executed locally · actual model-selected tool</small><pre>{&quot;lead_id&quot;: 1, &quot;recommendation&quot;: &quot;Human review: assign an owner and prioritize a timely follow-up on this overdue new website lead. Check consent and preferred channel before any outreach; do not contact until a human approves.&quot;}</pre><details><summary>Inspect actual result</summary><pre>{
+  &quot;proposal_id&quot;: &quot;06b1b6d3-8787-5ed1-bfb9-1d772a25571b&quot;,
+  &quot;status&quot;: &quot;pending_human_approval&quot;,
+  &quot;action&quot;: {
+    &quot;kind&quot;: &quot;follow_up_task&quot;,
+    &quot;lead_id&quot;: 1,
+    &quot;source_version&quot;: 1,
+    &quot;recommendation&quot;: &quot;Human review: assign an owner and prioritize a timely follow-up on this overdue new website lead. Check consent and preferred channel before any outreach; do not contact until a human approves.&quot;
+  }
+}</pre></details></div></div><h2 style="margin-top:24px">Review queue</h2><div class="task"><span class="tag">PENDING HUMAN APPROVAL</span><p>Human review: assign an owner and prioritize a timely follow-up on this overdue new website lead. Check consent and preferred channel before any outreach; do not contact until a human approves.</p><small>Kind: follow_up_task<br>Proposal: 06b1b6d3-8787-5ed1-bfb9-1d772a25571b</small></div></section><section><h2>Actual model output</h2><div class="answer">Lead 1 is the most useful follow-up to prioritize: it’s a new, overdue website lead, unassigned, with consent recorded and the highest business score (80). I queued a suggestion for human review to assign an owner and check the preferred channel before any outreach. <strong>No one was contacted.</strong><br><br>The proposal is pending human approval. Scores are business rules, not conversion probabilities; the listed value is potential value, not revenue.</div></section></div><footer>Run 25020610-d8a4-490f-be46-59316797dd3a · Evidence: live-result.json<br>Human approval records decisions only. External messages and business updates are not executed. This is a local prototype, not a deployed customer system.</footer></main></body></html>

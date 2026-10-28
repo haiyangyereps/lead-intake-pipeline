@@ -1,0 +1,32 @@
+{
+  "id": "25020610-d8a4-490f-be46-59316797dd3a",
+  "mode": "live_model",
+  "prompt": "Review open leads and propose the most useful follow-up. Do not contact anyone.",
+  "status": "completed",
+  "output": "Lead 1 is the most useful follow-up to prioritize: it’s a new, overdue website lead, unassigned, with consent recorded and the highest business score (80). I queued a suggestion for human review to assign an owner and check the preferred channel before any outreach. **No one was contacted.**\n\nThe proposal is pending human approval. Scores are business rules, not conversion probabilities; the listed value is potential value, not revenue.",
+  "events": [
+    {
+      "id": 3,
+      "run_id": "25020610-d8a4-490f-be46-59316797dd3a",
+      "name": "list_open_leads",
+      "args": "{}",
+      "result": "[{\"id\": 1, \"lead_id\": 1, \"source\": \"website\", \"owner\": \"unassigned\", \"stage\": \"new\", \"value_cents\": 240000, \"consent\": 1, \"urgency\": 1, \"created\": 1792977327.9451141, \"due\": 1793063727.9451141, \"version\": 1, \"score\": 80, \"overdue\": true, \"value\": \"2400.00\"}, {\"id\": 2, \"lead_id\": 2, \"source\": \"referral\", \"owner\": \"demo-sales\", \"stage\": \"new\", \"value_cents\": 80000, \"consent\": 1, \"urgency\": 0, \"created\": 1792977327.945809, \"due\": 1793063727.945809, \"version\": 1, \"score\": 50, \"overdue\": true, \"value\": \"800.00\"}, {\"id\": 3, \"lead_id\": 3, \"source\": \"website\", \"owner\": \"unassigned\", \"stage\": \"new\", \"value_cents\": 10000, \"consent\": 0, \"urgency\": 0, \"created\": 1792977327.946356, \"due\": 1793063727.946356, \"version\": 1, \"score\": 10, \"overdue\": true, \"value\": \"100.00\"}]"
+    },
+    {
+      "id": 4,
+      "run_id": "25020610-d8a4-490f-be46-59316797dd3a",
+      "name": "propose_follow_up",
+      "args": "{\"lead_id\":1,\"recommendation\":\"Human review: assign an owner and prioritize a timely follow-up on this overdue new website lead. Check consent and preferred channel before any outreach; do not contact until a human approves.\"}",
+      "result": "{\"proposal_id\": \"06b1b6d3-8787-5ed1-bfb9-1d772a25571b\", \"status\": \"pending_human_approval\", \"action\": {\"kind\": \"follow_up_task\", \"lead_id\": 1, \"source_version\": 1, \"recommendation\": \"Human review: assign an owner and prioritize a timely follow-up on this overdue new website lead. Check consent and preferred channel before any outreach; do not contact until a human approves.\"}}"
+    }
+  ],
+  "proposals": [
+    {
+      "id": "06b1b6d3-8787-5ed1-bfb9-1d772a25571b",
+      "run_id": "25020610-d8a4-490f-be46-59316797dd3a",
+      "payload": "{\"kind\": \"follow_up_task\", \"lead_id\": 1, \"source_version\": 1, \"recommendation\": \"Human review: assign an owner and prioritize a timely follow-up on this overdue new website lead. Check consent and preferred channel before any outreach; do not contact until a human approves.\"}",
+      "state": "pending",
+      "reviewer": null
+    }
+  ]
+}
